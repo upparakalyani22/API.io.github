@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SPA API Demo</title>
+</head>
+<body>
+    <h2>Bitcoin Price in USD</h2>
+    <div id="price">Loading...</div>
+
+    <script>
+        fetch(
+            'https://api.coingecko.com/api/v3/simple/price'
+            '?vs_currencies=usd&ids=bitcoin'
+        )
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('price').innerText =
+                    'Bitcoin Price USD: ' + data.bitcoin.usd;
+            })
+            .catch(error => {
+                document.getElementById('price').innerText =
+                    'Error fetching data';
+                console.error(error);
+            });
+    </script>
+</body>
+</html>
